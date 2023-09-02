@@ -166,7 +166,7 @@ export const MainContextStates = ({ children }) => {
 
   //add new ad
   const addAd = async ({ image, title, price, description }) => {
-    const url = `http://${window.location.hostname}:8000/api/ads/`;
+    const url = `http://${window.location.hostname}:3000/api/ads/`;
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", `${title}`);
