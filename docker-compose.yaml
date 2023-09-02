@@ -42,6 +42,7 @@ services:
     restart: always
     depends_on:
       - frontend_ads
+    command: /bin/sh -c "mkdir -p /usr/share/nginx/html/django_static && mkdir -p /usr/share/nginx/html/django_media && nginx -g 'daemon off;'"
 
   backend_ads:
     container_name: backend_ads
