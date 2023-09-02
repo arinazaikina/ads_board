@@ -1,0 +1,67 @@
+version: '3.10'
+
+networks:
+  ads:
+    driver: bridge
+
+services:
+  db_ads:
+    container_name: db_ads
+    env_file:
+      - ./.env
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    restart: always
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend_ads:
+    container_name: frontend_ads
+    build: frontend_react/.
+    volumes:
+      - frontend:/app/build
+    depends_on:
+      - db_ads
+
+  nginx_ads:
+    image: nginx:latest
+    container_name: nginx_ads
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./django_static/:/usr/share/nginx/html/django_static/
+      - ./django_media/:/usr/share/nginx/html/django_media/
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - frontend:/usr/share/nginx/html/
+    restart: always
+    depends_on:
+      - frontend_ads
+
+  backend_ads:
+    container_name: backend_ads
+    env_file:
+      - ./.env
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      db_ads:
+        condition: service_healthy
+    volumes:
+      - ./django_media:/app/django_media
+      - ./django_static:/app/django_static
+    command: >
+      bash -c "python  manage.py collectstatic --noinput
+      && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+
+volumes:
+  postgres_data:
+  frontend:
+  django_media:
+  django_static:

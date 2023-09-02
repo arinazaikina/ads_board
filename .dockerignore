@@ -1,0 +1,6 @@
+/frontend_react
+/venv
+.gitignore
+docker-compose.yaml
+nginx.conf
+postgresql.conf

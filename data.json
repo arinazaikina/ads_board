@@ -1,0 +1,228 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "app_users",
+        "model": "customuser"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "app_ads",
+        "model": "ad"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "app_ads",
+        "model": "review"
+    }
+},
+{
+    "model": "app_users.customuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$NSvH0K5niXuJkdzJbLjcac$HXdHj2qDQNOvhaAiYJiNSadftYie/nby1BUAK+WrboE=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "arina",
+        "last_name": "zaikina",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-09-02T10:20:18.574Z",
+        "email": "sav2405@gmail.com",
+        "image": "users/i-226-1.jpeg",
+        "phone": "+7(981)883-79-07",
+        "role": "user",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "app_users.customuser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Cp9u2dcaK6E989JFug3yED$eCLEvYkrkJFqVAQVQ4P3q0hMqAVlDt2dBVtXAe1d6q8=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "max",
+        "last_name": "maxov",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-09-02T10:25:39.412Z",
+        "email": "max@mail.com",
+        "image": "users/u2.jpg",
+        "phone": "+7(981)123-45-96",
+        "role": "user",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "app_users.customuser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$vlbIYmpVz7RFTBRVpjgwQI$wDbr/Eqylgj+w+KZjKDAihuNHSouWclzaI/v2UCJZZs=",
+        "last_login": null,
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-09-02T10:30:03.462Z",
+        "email": "admin@mail.com",
+        "image": "",
+        "phone": "",
+        "role": "user",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 1,
+    "fields": {
+        "title": "Куплю собаку",
+        "price": 20000,
+        "description": "Хочу себе такого друга",
+        "author": 1,
+        "created_at": "2023-09-02T10:22:09.109Z",
+        "image": "ads/dog.jpg"
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 2,
+    "fields": {
+        "title": "Продам бабушкин ковер",
+        "price": 999,
+        "description": "Ценнейшая вещь",
+        "author": 1,
+        "created_at": "2023-09-02T10:23:38.955Z",
+        "image": "ads/1500x1000_85.jpeg"
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 3,
+    "fields": {
+        "title": "Продам наушники",
+        "price": 2500,
+        "description": "Отличные, в рабочем состоянии",
+        "author": 1,
+        "created_at": "2023-09-02T10:24:44.113Z",
+        "image": "ads/headphone.jpg"
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 4,
+    "fields": {
+        "title": "Куплю дом",
+        "price": 9000000,
+        "description": "хочу купить дом",
+        "author": 2,
+        "created_at": "2023-09-02T10:26:39.763Z",
+        "image": "ads/hause.jpg"
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 5,
+    "fields": {
+        "title": "Продам автомобиль",
+        "price": 80000000,
+        "description": "Крутая тачка",
+        "author": 2,
+        "created_at": "2023-09-02T10:27:03.242Z",
+        "image": "ads/auto.jpg"
+    }
+},
+{
+    "model": "app_ads.ad",
+    "pk": 6,
+    "fields": {
+        "title": "Ищем дом для кота",
+        "price": 1,
+        "description": "Прекрасный кот ищет новый дом",
+        "author": 2,
+        "created_at": "2023-09-02T10:27:35.296Z",
+        "image": "ads/cat.jpg"
+    }
+},
+{
+    "model": "app_ads.review",
+    "pk": 1,
+    "fields": {
+        "text": "Где найти такого собакена?",
+        "author": 1,
+        "ad": 1,
+        "created_at": "2023-09-02T10:22:41.110Z"
+    }
+},
+{
+    "model": "app_ads.review",
+    "pk": 2,
+    "fields": {
+        "text": "Налетай!",
+        "author": 1,
+        "ad": 2,
+        "created_at": "2023-09-02T10:23:59.774Z"
+    }
+},
+{
+    "model": "app_ads.review",
+    "pk": 3,
+    "fields": {
+        "text": "Забираю!",
+        "author": 1,
+        "ad": 6,
+        "created_at": "2023-09-02T10:28:57.893Z"
+    }
+}
+]
