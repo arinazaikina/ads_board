@@ -30,7 +30,9 @@ services:
       - db_ads
 
   nginx_ads:
-    image: nginx:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
     container_name: nginx_ads
     ports:
       - "3000:3000"
@@ -42,7 +44,6 @@ services:
     restart: always
     depends_on:
       - frontend_ads
-    command: /bin/sh -c "mkdir -p /usr/share/nginx/html/django_static && mkdir -p /usr/share/nginx/html/django_media && nginx -g 'daemon off;'"
 
   backend_ads:
     container_name: backend_ads
