@@ -35,15 +35,15 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./django_static/:/usr/share/nginx/html/django_static/
-      - ./django_media/:/usr/share/nginx/html/django_media/
+      - ./django_static/:/usr/share/nginx/django_static/
+      - ./django_media/:/usr/share/nginx/django_media/
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - frontend:/usr/share/nginx/html/
     restart: always
     depends_on:
       - frontend_ads
       - backend_ads
-    command: /bin/sh -c "mkdir -p /usr/share/nginx/html/django_static && mkdir -p /usr/share/nginx/html/django_media && nginx -g 'daemon off;'"
+    command: /bin/sh -c "mkdir -p /usr/share/nginx/django_static && mkdir -p /usr/share/nginx/django_media && nginx -g 'daemon off;'"
 
   backend_ads:
     container_name: backend_ads
