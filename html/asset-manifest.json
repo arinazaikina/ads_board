@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7ed9628d.css",
+    "main.js": "/static/js/main.fa75263c.js",
+    "static/js/787.a2641c55.chunk.js": "/static/js/787.a2641c55.chunk.js",
+    "static/media/malvestida-u79wy47kvVs-unsplash.jpg": "/static/media/malvestida-u79wy47kvVs-unsplash.6c7873e783356b2619c5.jpg",
+    "static/media/greg-rakozy-oMpAz-DN-9I-unsplash.jpg": "/static/media/greg-rakozy-oMpAz-DN-9I-unsplash.190a511ec52952c5c4fe.jpg",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/Lato-Regular.ttf": "/static/media/Lato-Regular.9d883d540ee2b4de8024.ttf",
+    "static/media/BebasNeue-Regular.ttf": "/static/media/BebasNeue-Regular.12e3683f9192436a7be8.ttf",
+    "static/media/tear-off-ads.png": "/static/media/tear-off-ads.a1321c8d7efe5417bc1a.png",
+    "static/media/close.png": "/static/media/close.2693904e47e772bfec5f.png",
+    "index.html": "/index.html",
+    "main.7ed9628d.css.map": "/static/css/main.7ed9628d.css.map",
+    "main.fa75263c.js.map": "/static/js/main.fa75263c.js.map",
+    "787.a2641c55.chunk.js.map": "/static/js/787.a2641c55.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ed9628d.css",
+    "static/js/main.fa75263c.js"
+  ]
+}
