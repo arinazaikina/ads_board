@@ -1,3 +1,0 @@
-FROM nginx:latest
-RUN mkdir -p /usr/share/nginx/html/django_static \
-    && mkdir -p /usr/share/nginx/html/django_media
