@@ -72,13 +72,13 @@
         "is_superuser": false,
         "first_name": "arina",
         "last_name": "zaikina",
-        "is_staff": false,
+        "is_staff": true,
         "is_active": true,
         "date_joined": "2023-09-02T10:20:18.574Z",
         "email": "sav2405@gmail.com",
         "image": "users/i-226-1.jpeg",
         "phone": "+7(981)883-79-07",
-        "role": "user",
+        "role": "admin",
         "groups": [],
         "user_permissions": []
     }
