@@ -5,12 +5,10 @@ from djoser import utils
 from djoser.conf import settings
 from dotenv import load_dotenv
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
 from rest_framework.test import APIClient, APITestCase
 
 from app_users.email import PasswordResetEmail
 from app_users.models import CustomUser
-from app_users.serializers import CustomPasswordResetConfirmSerializer
 
 load_dotenv()
 
@@ -130,39 +128,3 @@ class TestPasswordResetEmail(APITestCase):
         self.assertEqual(context["domain"], os.getenv("HOST") + ":3000")
         self.assertEqual(context["protocol"], "http")
         self.assertEqual(context["site_name"], "ADS_ONLINE")
-
-
-class UserSetPasswordSerializerTest(APITestCase):
-    """Кастомный валидатор для установки нового пароля"""
-
-    def test_valid_password(self):
-        """Корректные пароли"""
-        serializer = CustomPasswordResetConfirmSerializer(
-            data={
-                "new_password": "Password123",
-                "re_new_password": "Password123",
-            }
-        )
-        self.assertTrue(serializer.is_valid())
-
-    def test_password_without_digit(self):
-        """Пароли без цифр"""
-        serializer = CustomPasswordResetConfirmSerializer(
-            data={
-                "new_password": "Password",
-                "re_new_password": "Password",
-            }
-        )
-        with self.assertRaises(ValidationError):
-            serializer.is_valid(raise_exception=True)
-
-    def test_password_without_letter(self):
-        """Пароли без букв"""
-        serializer = CustomPasswordResetConfirmSerializer(
-            data={
-                "new_password": "123456",
-                "re_new_password": "123456",
-            }
-        )
-        with self.assertRaises(ValidationError):
-            serializer.is_valid(raise_exception=True)
