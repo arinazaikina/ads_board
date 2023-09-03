@@ -115,7 +115,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         """
         ad_id = self.kwargs.get("ad_pk")
         ad = get_object_or_404(Ad, id=ad_id)
-        return ad.reviews.all()
+        return ad.reviews.all().order_by('created_at')
 
     def perform_create(self, serializer: Serializer) -> None:
         """
