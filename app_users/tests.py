@@ -10,7 +10,7 @@ from rest_framework.test import APIClient, APITestCase
 
 from app_users.email import PasswordResetEmail
 from app_users.models import CustomUser
-from app_users.serializers import UserSetPasswordSerializer
+from app_users.serializers import CustomPasswordResetConfirmSerializer
 
 load_dotenv()
 
@@ -137,7 +137,7 @@ class UserSetPasswordSerializerTest(APITestCase):
 
     def test_valid_password(self):
         """Корректные пароли"""
-        serializer = UserSetPasswordSerializer(
+        serializer = CustomPasswordResetConfirmSerializer(
             data={
                 "new_password": "Password123",
                 "re_new_password": "Password123",
@@ -147,7 +147,7 @@ class UserSetPasswordSerializerTest(APITestCase):
 
     def test_password_without_digit(self):
         """Пароли без цифр"""
-        serializer = UserSetPasswordSerializer(
+        serializer = CustomPasswordResetConfirmSerializer(
             data={
                 "new_password": "Password",
                 "re_new_password": "Password",
@@ -158,7 +158,7 @@ class UserSetPasswordSerializerTest(APITestCase):
 
     def test_password_without_letter(self):
         """Пароли без букв"""
-        serializer = UserSetPasswordSerializer(
+        serializer = CustomPasswordResetConfirmSerializer(
             data={
                 "new_password": "123456",
                 "re_new_password": "123456",

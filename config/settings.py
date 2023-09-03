@@ -142,13 +142,12 @@ DEFAULT_FROM_EMAIL = os.getenv("EMAIL_HOST_USER")
 
 DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}/",
-    "PASSWORD_RESET_CONFIRM_RETYPE": True,
     "EMAIL": {"password_reset": "app_users.email.PasswordResetEmail"},
     "SERIALIZERS": {
         "user_create": "app_users.serializers.RegisterUserSerializer",
         "user": "app_users.serializers.UserSerializer",
         "current_user": "app_users.serializers.UserSerializer",
-        "set_password": "app_users.serializers.UserSetPasswordSerializer",
+        "password_reset_confirm": "app_users.serializers.CustomPasswordResetConfirmSerializer",
     },
     "LOGIN_FIELD": "email",
 }

@@ -1,5 +1,6 @@
 from typing import Any, Dict
 
+from djoser.serializers import PasswordResetConfirmSerializer
 from rest_framework import serializers
 
 from .models import CustomUser
@@ -61,12 +62,11 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "email"]
 
 
-class UserSetPasswordSerializer(serializers.Serializer):
+class CustomPasswordResetConfirmSerializer(PasswordResetConfirmSerializer):
     """
-    Сериализатор для установки нового пароля.
+    Сериализатор для подтверждения установки нового пароля.
     """
 
-    new_password = serializers.CharField(write_only=True)
     re_new_password = serializers.CharField(write_only=True)
 
     def validate(self, attrs: Dict[str, Any]) -> Dict[str, Any]:
@@ -76,17 +76,24 @@ class UserSetPasswordSerializer(serializers.Serializer):
 
         :param attrs: Словарь атрибутов для валидации.
         :return: Валидированный словарь атрибутов.
-        :raises serializers.ValidationError: если пароль не соответствует требованиям.
+        :raises serializers.ValidationError: Если пароль не соответствует требованиям.
         """
-        password = attrs.get("new_password")
+        attrs = super().validate(attrs)
+        new_password = attrs.get("new_password")
+        re_new_password = attrs.get("re_new_password")
 
-        if not any(char.isdigit() for char in password):
+        if not any(char.isdigit() for char in new_password):
             raise serializers.ValidationError(
-                "Пароль должен содержать хотя бы одну цифру."
+                {"new_password": "Пароль должен содержать хотя бы одну цифру."}
             )
-        if not any(char.isalpha() for char in password):
+        if not any(char.isalpha() for char in new_password):
             raise serializers.ValidationError(
-                "Пароль должен содержать хотя бы одну букву."
+                {"new_password": "Пароль должен содержать хотя бы одну букву."}
             )
 
-        return super().validate(attrs)
+        if new_password != re_new_password:
+            raise serializers.ValidationError(
+                {"re_new_password": "Пароли не совпадают."}
+            )
+
+        return attrs
