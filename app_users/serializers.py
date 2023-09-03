@@ -56,6 +56,8 @@ class UserSerializer(serializers.ModelSerializer):
     Сериализатор для модели CustomUser, представляющей пользователей.
     """
 
+    phone = serializers.CharField(validators=[PhoneValidator()])
+
     class Meta:
         model = CustomUser
         fields = ["first_name", "last_name", "phone", "image", "id", "email"]
