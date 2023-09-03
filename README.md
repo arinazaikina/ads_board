@@ -67,7 +67,7 @@ docker-compose build --no-cache && docker-compose up -d
 10. Выполнить миграции и загрузить тестовые данные
 
 ```bash
-docker exec -t backend_ads bash
+docker exec -it backend_ads bash
 ```
 
 ```bash
