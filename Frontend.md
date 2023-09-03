@@ -102,19 +102,27 @@ placeholder="повторите, пожалуйста, пароль"
 Из-за такого решения сервис можно запустить только на локальной машине.
 
 `frontend_react/src/context/AuthContext.js`
+
 До правок: `const BASE_URL = "http://127.0.0.1:8000/api";` и `const url = "http://127.0.0.1:8000/api/ads/";`
+
 После правок:  `const BASE_URL = `http://${window.location.hostname}:3000/api`;` и `const url = `http://${window.location.hostname}:3000/api/ads/`;`
 
 `frontend_react/src/context/MainContext.js`
+
 До правок: `const BASE_URL = "http://127.0.0.1:8000/api";`
+
 После правок: `const BASE_URL = `http://${window.location.hostname}:3000/api`;`
 
 `frontend_react/src/utils/axiosInstance.js`
+
 До правок: `const baseURL = 'http://127.0.0.1:8000'`
+
 После правок: `const baseURL = `http://${window.location.hostname}:3000`;`
 
 `frontend_react/src/utils/useAxios.js`
+
 До правок: `const baseURL = 'http://127.0.0.1:8000'`
+
 После правок: `const baseURL = `http://${window.location.hostname}:3000`;`
 
 Помимо захардкорживания переменной, почему-то указан порт 8000. У нас же должен работать
@@ -130,7 +138,9 @@ nginx, он будет проксировать запросы на backend. Е�
 
 Где могла, я просто вывела белые станицы с сообщением об ошибке.
 Например:
+
 `frontend_react/src/context/AuthContext.js`
+
 До внесения правок:
 
 ```js
