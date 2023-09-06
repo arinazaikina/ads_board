@@ -3,12 +3,16 @@ from typing import Any, Dict
 from rest_framework import serializers
 
 from .models import Ad, Review
+from .validators import NotEmptyStringValidator
 
 
 class AdSerializer(serializers.ModelSerializer):
     """
     Сериализатор для модели Ad, которая представляет объявление.
     """
+
+    title = serializers.CharField(validators=[NotEmptyStringValidator()])
+    description = serializers.CharField(validators=[NotEmptyStringValidator()])
 
     class Meta:
         model = Ad
@@ -47,6 +51,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     Сериализатор для модели Review, представляющей отзывы.
     """
 
+    text = serializers.CharField(validators=[NotEmptyStringValidator()])
     author_id = serializers.IntegerField(source="author.id", read_only=True)
     author_first_name = serializers.CharField(
         source="author.first_name", read_only=True

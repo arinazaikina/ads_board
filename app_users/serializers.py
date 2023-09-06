@@ -3,6 +3,7 @@ from typing import Any, Dict
 from djoser.serializers import PasswordResetConfirmSerializer
 from rest_framework import serializers
 
+from app_ads.validators import NotEmptyStringValidator
 from .models import CustomUser
 from .validators import PasswordValidator, PhoneValidator
 
@@ -19,7 +20,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         write_only=True, required=True, validators=[PasswordValidator()]
     )
     phone = serializers.CharField(validators=[PhoneValidator()])
-    role = serializers.ChoiceField(choices=CustomUser.ROLE_CHOICES, default="user")
+    role = serializers.ChoiceField(
+        choices=CustomUser.ROLE_CHOICES, default="user", read_only=True
+    )
 
     class Meta:
         model = CustomUser
@@ -57,6 +60,8 @@ class UserSerializer(serializers.ModelSerializer):
     """
 
     phone = serializers.CharField(validators=[PhoneValidator()])
+    first_name = serializers.CharField(validators=[NotEmptyStringValidator()])
+    last_name = serializers.CharField(validators=[NotEmptyStringValidator()])
 
     class Meta:
         model = CustomUser

@@ -1,5 +1,6 @@
 from typing import List
 
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 from app_users.models import CustomUser
@@ -13,7 +14,9 @@ class Ad(models.Model):
     """
 
     title = models.CharField(max_length=200, verbose_name="Название товара")
-    price = models.PositiveIntegerField(verbose_name="Цена товара")
+    price = models.PositiveIntegerField(
+        verbose_name="Цена товара", validators=[MaxValueValidator(2147483647)]
+    )
     description = models.TextField(
         verbose_name="Описание товара", max_length=1000, blank=True
     )
@@ -45,7 +48,7 @@ class Review(models.Model):
     Модель, описывающая отзыв.
     """
 
-    text = models.TextField(verbose_name="Текст отзыва")
+    text = models.TextField(verbose_name="Текст отзыва", max_length=1000)
     author = models.ForeignKey(
         CustomUser,
         related_name="reviews",

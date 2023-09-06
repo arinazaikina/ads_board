@@ -99,6 +99,68 @@ class AdCreateAPITestCase(BaseTestCase):
         all_ads = APIClient().get(self.URL).json().get("results")
         self.assertEqual(len(all_ads), 2)
 
+    def test_empty_title(self):
+        """Проверка, что нельзя создать объявление с пустым полем title"""
+        client = self.user_clients[0]
+        data = {
+            "title": "",
+            "price": "50000",
+            "description": "Описание",
+        }
+        response = client.post(self.URL, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("title", response.data)
+
+    def test_title_with_only_spaces(self):
+        """Проверка, что нельзя создать объявление с полем title, состоящим только из пробелов"""
+        client = self.user_clients[0]
+        data = {
+            "title": "   ",
+            "price": "50000",
+            "description": "Описание",
+        }
+        response = client.post(self.URL, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("title", response.data)
+
+    def test_empty_description(self):
+        """Проверка, что нельзя создать объявление с пустым полем description"""
+        client = self.user_clients[0]
+        data = {
+            "title": "Название",
+            "price": "50000",
+            "description": "",
+        }
+        response = client.post(self.URL, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("description", response.data)
+
+    def test_description_with_only_spaces(self):
+        """Проверка, что нельзя создать объявление с полем description, состоящим только из пробелов"""
+        client = self.user_clients[0]
+        data = {
+            "title": "Название",
+            "price": "50000",
+            "description": "   ",
+        }
+        response = client.post(self.URL, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("description", response.data)
+
+    def test_price_exceeds_limit(self):
+        """Цена не должна превышать максимальное значение"""
+        client = self.user_clients[0]
+        ad_data = {
+            "title": "Very expensive item",
+            "price": 2147483648,
+            "description": "This should fail",
+        }
+
+        response = client.post(self.URL, ad_data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("price", response.data)
+
 
 class AdReadAPITestCase(BaseTestCase):
     """Чтение объявления"""
@@ -399,6 +461,25 @@ class ReviewCreateAPITestCase(BaseTestCase):
                 )
                 self.assertIsNotNone(response_data.get("pk"))
                 self.assertIsNotNone(response_data.get("created_at"))
+
+    def test_text_field_cannot_be_empty_or_whitespace(self):
+        """Поле text не может быть пустым или состоять только из пробелов."""
+
+        invalid_comment_data = [
+            {"text": ""},
+            {"text": "  "},
+            {"text": "\n"},
+            {"text": "\t"},
+        ]
+
+        # Здесь используется первый аутентифицированный клиент из списка
+        client = self.user_clients[0]
+
+        for data in invalid_comment_data:
+            for url in self.comment_urls:
+                response = client.post(url, data)
+                self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+                self.assertIn("text", response.data)
 
 
 class ReviewReadAPITestCase(BaseTestCase):

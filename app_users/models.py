@@ -22,7 +22,11 @@ class CustomUser(AbstractUser):
     ]
 
     username = None
-    email = models.EmailField(unique=True, verbose_name="Электронная почта")
+    email = models.EmailField(
+        unique=True, verbose_name="Электронная почта", max_length=254
+    )
+    first_name = models.CharField(max_length=64, verbose_name="Имя")
+    last_name = models.CharField(max_length=64, verbose_name="Фамилия")
     image = models.ImageField(
         upload_to="users/", verbose_name="Изображение пользователя", **NULLABLE
     )

@@ -75,6 +75,30 @@ class UserCreationTestCase(APITestCase):
 
         self.assertEqual(CustomUser.objects.count(), 0)
 
+    def test_invalid_names(self):
+        """Имя и фамилия не могут быть пустыми или состоять только из пробелов."""
+
+        invalid_name_data_list = [
+            {"first_name": "", "last_name": "ValidLast"},
+            {"first_name": "  ", "last_name": "ValidLast"},
+            {"first_name": "ValidFirst", "last_name": ""},
+            {"first_name": "ValidFirst", "last_name": "  "},
+        ]
+
+        for invalid_name_data in invalid_name_data_list:
+            invalid_user_data = self.valid_user_data.copy()
+            invalid_user_data.update(invalid_name_data)
+            response = self.client.post(
+                self.register_url, invalid_user_data, format="json"
+            )
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+            if invalid_name_data["first_name"].strip() == "":
+                self.assertIn("first_name", response.data)
+            if invalid_name_data["last_name"].strip() == "":
+                self.assertIn("last_name", response.data)
+
+        self.assertEqual(CustomUser.objects.count(), 0)
+
 
 class UserDisplayTestCase(APITestCase):
     """Чтение данных пользователя"""
