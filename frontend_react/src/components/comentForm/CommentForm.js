@@ -29,8 +29,8 @@ function CommentForm({ addComment }) {
           name="text"
           className="comment__input"
           rows="3"
-          minLength="8"
-          maxLength="200"
+          minLength="1"
+          maxLength="1000"
           required="required"
           onChange={handleChangeInput}
         />

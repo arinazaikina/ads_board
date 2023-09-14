@@ -35,9 +35,9 @@ function Registration() {
             title="Имя"
             name="first_name"
             type="text"
-            minLength="3"
+            minLength="1"
             className="form__input"
-            maxLength="30"
+            maxLength="64"
             onChange={handleChangeInput}
           />
           <div
@@ -56,9 +56,9 @@ function Registration() {
             title="Фамилия"
             name="last_name"
             type="text"
-            minLength="3"
+            minLength="1"
             className="form__input"
-            maxLength="30"
+            maxLength="64"
             onChange={handleChangeInput}
           />
           <div

@@ -88,8 +88,8 @@ function AddCard({ id, handleAddAd, isLoading }) {
               className="userForm__input"
               name="title"
               type="text"
-              minLength="3"
-              maxLength="30"
+              minLength="1"
+              maxLength="200"
               onChange={handleTitleChange}
             />
             <div
@@ -141,8 +141,8 @@ function AddCard({ id, handleAddAd, isLoading }) {
               className="userForm__input"
               name="description"
               type="text"
-              minLength="8"
-              maxLength="30"
+              minLength="1"
+              maxLength="1000"
               onChange={handleDescriptionChange}
             />
             <div

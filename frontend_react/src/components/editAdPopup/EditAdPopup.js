@@ -51,8 +51,8 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
               name="title"
               required
               type="text"
-              minLength="3"
-              maxLength="30"
+              minLength="1"
+              maxLength="200"
               onChange={handleChangeInput}
             />
             <div
@@ -90,8 +90,8 @@ function EditAdPopup({ isEditPopupOpen, onClose, handleEditAdd, id, ad }) {
                 name="description"
                 value={values.description || ""}
                 type="text"
-                minLength="8"
-                maxLength="50"
+                minLength="1"
+                maxLength="1000"
                 required
                 onChange={handleChangeInput}
               />

@@ -44,11 +44,11 @@ function Profile({ userInfo, handleUpdateUser }) {
           title="Имя"
           name="first_name"
           type="text"
-          minLength="3"
+          minLength="1"
           required
           autoComplete="on"
           className="userForm__input"
-          maxLength="30"
+          maxLength="64"
           onChange={handleChangeInput}
         />
         <div
@@ -65,10 +65,10 @@ function Profile({ userInfo, handleUpdateUser }) {
           name="last_name"
           type="text"
           required
-          minLength="3"
+          minLength="1"
           autoComplete="on"
           className="userForm__input"
-          maxLength="30"
+          maxLength="64"
           onChange={handleChangeInput}
         />
         <div
