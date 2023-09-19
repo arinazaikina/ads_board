@@ -41,3 +41,23 @@ class EmailValidator:
         local_part = value.split('@')[0]
         if len(local_part) > 64:
             raise serializers.ValidationError(self.message)
+
+
+class CustomPasswordValidator:
+    @staticmethod
+    def validate(password, user=None):
+        if len(password) < 8:
+            raise ValidationError("Пароль должен содержать минимум 8 символов.")
+        if not any(char.isdigit() for char in password):
+            raise ValidationError("Пароль должен содержать хотя бы одну цифру.")
+        if not any(char.isalpha() for char in password):
+            raise ValidationError("Пароль должен содержать хотя бы одну букву.")
+
+    @staticmethod
+    def get_help_text():
+        return """
+        Пароль должен соответствовать следующим требованиям:
+        - Минимум 8 символов
+        - Хотя бы одна цифра
+        - Хотя бы одна буква
+        """
