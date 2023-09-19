@@ -1,6 +1,7 @@
 import re
 
 from django.core.exceptions import ValidationError
+from rest_framework import serializers
 
 
 class PhoneValidator:
@@ -28,3 +29,15 @@ class PasswordValidator:
             raise ValidationError("Пароль должен содержать хотя бы одну цифру.")
         if not any(char.isalpha() for char in value):
             raise ValidationError("Пароль должен содержать хотя бы одну букву.")
+
+
+class EmailValidator:
+    """
+    Проверяет, что локальная часть адреса email не превышает 64 символа
+    """
+    message = 'Локальная часть адреса email не должна превышать 64 символов.'
+
+    def __call__(self, value):
+        local_part = value.split('@')[0]
+        if len(local_part) > 64:
+            raise serializers.ValidationError(self.message)

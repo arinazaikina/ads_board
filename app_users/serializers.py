@@ -5,7 +5,7 @@ from rest_framework import serializers
 
 from app_ads.validators import NotEmptyStringValidator
 from .models import CustomUser
-from .validators import PasswordValidator, PhoneValidator
+from .validators import PasswordValidator, PhoneValidator, EmailValidator
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):
@@ -23,6 +23,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     role = serializers.ChoiceField(
         choices=CustomUser.ROLE_CHOICES, default="user", read_only=True
     )
+    email = serializers.EmailField(validators=[EmailValidator()])
 
     class Meta:
         model = CustomUser
