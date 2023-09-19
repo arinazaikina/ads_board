@@ -61,3 +61,14 @@ class CustomPasswordValidator:
         - Хотя бы одна цифра
         - Хотя бы одна буква
         """
+
+
+def phone_validator(value):
+    """
+    Проверяет, соответствует ли номер телефона формату '+7(***)***-**-**'
+    """
+    phone_regex = r"^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$"
+    message = "Телефонный номер должен быть в формате: +7(***)***-**-**"
+
+    if not re.match(phone_regex, value):
+        raise ValidationError(message)
