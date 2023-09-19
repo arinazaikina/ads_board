@@ -105,3 +105,16 @@ class CustomPasswordResetConfirmSerializer(PasswordResetConfirmSerializer):
             )
 
         return attrs
+
+
+class EmailCheckSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    @staticmethod
+    def validate_email(value):
+        """
+        Проверяет, существует ли введенный адрес электронной почты в базе данных.
+        """
+        if not CustomUser.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Данный адрес электронной почты не найден.")
+        return value
