@@ -31,7 +31,9 @@ class CustomUser(AbstractUser):
     image = models.ImageField(
         upload_to="users/", verbose_name="Изображение пользователя", **NULLABLE
     )
-    phone = models.CharField(max_length=16, verbose_name="Телефон", validators=[phone_validator])
+    phone = models.CharField(
+        max_length=16, verbose_name="Телефон", validators=[phone_validator]
+    )
     role = models.CharField(
         max_length=5,
         choices=ROLE_CHOICES,

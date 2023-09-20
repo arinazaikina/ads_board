@@ -5,20 +5,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('app_ads', '0002_initial'),
+        ("app_ads", "0002_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='ad',
-            name='price',
-            field=models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(2147483647)], verbose_name='Цена товара'),
+            model_name="ad",
+            name="price",
+            field=models.PositiveIntegerField(
+                validators=[django.core.validators.MaxValueValidator(2147483647)],
+                verbose_name="Цена товара",
+            ),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='text',
-            field=models.TextField(max_length=1000, verbose_name='Текст отзыва'),
+            model_name="review",
+            name="text",
+            field=models.TextField(max_length=1000, verbose_name="Текст отзыва"),
         ),
     ]

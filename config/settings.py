@@ -88,7 +88,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
     {
-        'NAME': 'app_users.validators.CustomPasswordValidator',
+        "NAME": "app_users.validators.CustomPasswordValidator",
     },
 ]
 
@@ -151,7 +151,7 @@ DJOSER = {
         "user": "app_users.serializers.UserSerializer",
         "current_user": "app_users.serializers.UserSerializer",
         "password_reset_confirm": "app_users.serializers.CustomPasswordResetConfirmSerializer",
-        "password_reset": "app_users.serializers.EmailCheckSerializer"
+        "password_reset": "app_users.serializers.EmailCheckSerializer",
     },
     "LOGIN_FIELD": "email",
 }

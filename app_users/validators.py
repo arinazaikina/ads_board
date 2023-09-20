@@ -35,10 +35,11 @@ class EmailValidator:
     """
     Проверяет, что локальная часть адреса email не превышает 64 символа
     """
-    message = 'Локальная часть адреса email не должна превышать 64 символов.'
+
+    message = "Локальная часть адреса email не должна превышать 64 символов."
 
     def __call__(self, value):
-        local_part = value.split('@')[0]
+        local_part = value.split("@")[0]
         if len(local_part) > 64:
             raise serializers.ValidationError(self.message)
 

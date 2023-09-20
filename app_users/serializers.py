@@ -116,5 +116,7 @@ class EmailCheckSerializer(serializers.Serializer):
         Проверяет, существует ли введенный адрес электронной почты в базе данных.
         """
         if not CustomUser.objects.filter(email=value).exists():
-            raise serializers.ValidationError("Данный адрес электронной почты не найден.")
+            raise serializers.ValidationError(
+                "Данный адрес электронной почты не найден."
+            )
         return value
